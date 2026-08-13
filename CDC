@@ -1,0 +1,40 @@
+#--------------------------------------------------------------------
+# Plantilla para el .env del servidor de producción.
+# Cuando subas el sistema, renombra este archivo a ".env" en el
+# servidor y llena solo lo marcado como PENDIENTE.
+#--------------------------------------------------------------------
+
+CI_ENVIRONMENT = production
+
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
+
+# PENDIENTE: pon aquí el dominio real, con / al final. Ej: 'https://sistema.furlongappraisers.com/'
+app.baseURL = 'PENDIENTE'
+
+# Si el sitio ya tiene HTTPS, descomenta esta línea:
+# app.forceGlobalSecureRequests = true
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+
+# PENDIENTE: datos de conexión del servidor de producción
+database.default.hostname = PENDIENTE
+database.default.database = PENDIENTE
+database.default.username = PENDIENTE
+database.default.password = PENDIENTE
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
+
+# Esto ya no cambia, es lo mismo que ya dejamos probado:
+database.default.charset = utf8mb4
+database.default.DBCollat = utf8mb4_general_ci
+
+#--------------------------------------------------------------------
+# LOGGER
+#--------------------------------------------------------------------
+
+logger.threshold = 4
