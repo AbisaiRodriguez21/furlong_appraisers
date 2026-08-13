@@ -14,7 +14,18 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->get('/', 'Home::index');
 
     // Same role matrix as the legacy system: 0=Usuario, 1=Administrador, 2=Gerente General.
-    $routes->get('usuarios', 'EnConstruccion::index/usuarios', ['filter' => 'role:2']);
+    // --- Usuarios (replaces Usuarios.php + Usuarios_Agregar/Consultar/Modificar/ModificarPassw/Eliminar.php) ---
+    $routes->group('usuarios', ['filter' => 'role:2'], static function ($routes): void {
+        $routes->get('/', 'Usuarios::index');
+        $routes->get('filtro', 'Usuarios::filtro');
+        $routes->get('nuevo', 'Usuarios::nuevo');
+        $routes->post('guardar', 'Usuarios::guardar');
+        $routes->get('(:num)', 'Usuarios::mostrar/$1');
+        $routes->get('(:num)/editar', 'Usuarios::editar/$1');
+        $routes->post('(:num)/actualizar', 'Usuarios::actualizar/$1');
+        $routes->get('(:num)/eliminar', 'Usuarios::confirmarEliminar/$1');
+        $routes->post('(:num)/eliminar', 'Usuarios::eliminar/$1');
+    });
 
     // --- Clientes (replaces Clientes.php + Clientes_Agregar/Consultar/Modificar/Eliminar.php) ---
     $routes->get('clientes', 'Clientes::index');
