@@ -73,7 +73,17 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
         $routes->post('(:any)/pagar', 'Cobranza::pagarGuardar/$1');
         $routes->get('(:any)/ver', 'Cobranza::ver/$1');
     });
-    $routes->get('recibos', 'EnConstruccion::index/recibos', ['filter' => 'role:1,2']);
+    // --- Recibos de Honorarios (replaces Recibos.php + ReciboHonorarios/Cambiar/Cancelar/Consulta.php + ReciboHonorarios_Proceso.php) ---
+    $routes->group('recibos', ['filter' => 'role:1,2'], static function ($routes): void {
+        $routes->get('/', 'Recibos::index');
+        $routes->get('nuevo', 'Recibos::nuevo');
+        $routes->post('guardar', 'Recibos::guardar');
+        $routes->get('(:num)', 'Recibos::consultar/$1');
+        $routes->get('(:num)/editar', 'Recibos::editar/$1');
+        $routes->post('(:num)/actualizar', 'Recibos::actualizar/$1');
+        $routes->get('(:num)/cancelar', 'Recibos::confirmarCancelar/$1');
+        $routes->post('(:num)/cancelar', 'Recibos::cancelar/$1');
+    });
     // --- Documentación (replaces Documentacion.php + AgregarDocumentacion/ModificarDocumentacion/EliminarDocumentacion.php) ---
     $routes->get('documentacion', 'Documentacion::index');
     $routes->get('documentacion/filtro', 'Documentacion::filtro');

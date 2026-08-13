@@ -1,0 +1,45 @@
+BODY {
+   font: 12pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+   margin: 10 0 10 0px;
+   text-align: center;
+    background-color: #ffffff;
+}
+#logo	{
+	  /*position: absolute;
+	  background-image:url(encabezado.png);
+	  border:3px solid #2F4B9E; 
+	  height:100px;
+      width: 1026px;
+	  left:50%;
+	  margin-left:-513px;*/
+	  visibility:hidden;
+	  display:none;
+}
+#contenedor
+	{ 
+	  position:absolute;  
+	  background:#ffffff; 
+	  border:0px solid #2F4B9E; 
+      left: 50%;
+      width: 1026px;
+      margin-left: -513px;
+	  margin-top:1px;
+}
+#menu{
+	  visibility:hidden;
+	  display:none;
+}
+.cerrarsesion{
+	visibility:hidden;
+	display:none;
+}
+#oculto
+{
+	visibility:hidden;
+	display: none;
+}
+#form1
+{
+	visibility:hidden;
+	display: none;
+}
