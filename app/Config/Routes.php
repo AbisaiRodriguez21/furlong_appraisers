@@ -49,7 +49,20 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->get('avaluos/(:any)/editar', 'Avaluos::editar/$1');
     $routes->post('avaluos/(:any)/actualizar', 'Avaluos::actualizar/$1');
     $routes->get('avaluos/(:any)', 'Avaluos::mostrar/$1');
-    $routes->get('cobranza', 'EnConstruccion::index/cobranza', ['filter' => 'role:1,2']);
+    // --- Cobranza (replaces Cobranza.php + CobranzaPagar/CobranzaVer/CobranzaModifP.php + eliminarPago.php) ---
+    $routes->group('cobranza', ['filter' => 'role:1,2'], static function ($routes): void {
+        $routes->get('/', 'Cobranza::index');
+        $routes->get('filtro', 'Cobranza::filtro');
+        $routes->get('reportes', 'EnConstruccion::index/cobranza-reportes', ['filter' => 'role:2']);
+        $routes->get('pago/(:num)/editar', 'Cobranza::editarPago/$1');
+        $routes->post('pago/(:num)/actualizar', 'Cobranza::actualizarPago/$1');
+        $routes->get('pago/(:num)/eliminar', 'Cobranza::confirmarEliminarPago/$1');
+        $routes->post('pago/(:num)/eliminar', 'Cobranza::eliminarPago/$1');
+        $routes->get('(:any)/pagar', 'Cobranza::pagar/$1');
+        $routes->post('(:any)/pagar', 'Cobranza::pagarGuardar/$1');
+        $routes->get('(:any)/ver', 'Cobranza::ver/$1');
+    });
+    $routes->get('recibos', 'EnConstruccion::index/recibos', ['filter' => 'role:1,2']);
     // --- Documentación (replaces Documentacion.php + AgregarDocumentacion/ModificarDocumentacion/EliminarDocumentacion.php) ---
     $routes->get('documentacion', 'Documentacion::index');
     $routes->get('documentacion/filtro', 'Documentacion::filtro');
