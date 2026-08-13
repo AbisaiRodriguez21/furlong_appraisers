@@ -39,6 +39,14 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->post('trabajos/(:num)/eliminar', 'Trabajos::eliminar/$1');
     $routes->get('avaluos', 'EnConstruccion::index/avaluos');
     $routes->get('cobranza', 'EnConstruccion::index/cobranza', ['filter' => 'role:1,2']);
-    $routes->get('documentacion', 'EnConstruccion::index/documentacion');
+    // --- Documentación (replaces Documentacion.php + AgregarDocumentacion/ModificarDocumentacion/EliminarDocumentacion.php) ---
+    $routes->get('documentacion', 'Documentacion::index');
+    $routes->get('documentacion/filtro', 'Documentacion::filtro');
+    $routes->get('documentacion/nuevo', 'Documentacion::nuevo');
+    $routes->post('documentacion/guardar', 'Documentacion::guardar');
+    $routes->get('documentacion/(:num)/editar', 'Documentacion::editar/$1');
+    $routes->post('documentacion/(:num)/actualizar', 'Documentacion::actualizar/$1');
+    $routes->get('documentacion/(:num)/eliminar', 'Documentacion::confirmarEliminar/$1');
+    $routes->post('documentacion/(:num)/eliminar', 'Documentacion::eliminar/$1');
     $routes->get('ayuda', 'EnConstruccion::index/ayuda');
 });
