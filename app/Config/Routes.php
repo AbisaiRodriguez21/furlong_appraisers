@@ -27,7 +27,16 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->get('clientes/(:num)/eliminar', 'Clientes::confirmarEliminar/$1');
     $routes->post('clientes/(:num)/eliminar', 'Clientes::eliminar/$1');
 
-    $routes->get('trabajos', 'EnConstruccion::index/trabajos');
+    // --- Trabajos (replaces Trabajos.php + AgregarTrabajo/ConsultarTrabajo/ModificarTrabajo/EliminarTrabajo.php) ---
+    $routes->get('trabajos', 'Trabajos::index');
+    $routes->get('trabajos/filtro', 'Trabajos::filtro');
+    $routes->get('trabajos/nuevo', 'Trabajos::nuevo');
+    $routes->post('trabajos/guardar', 'Trabajos::guardar');
+    $routes->get('trabajos/(:num)', 'Trabajos::mostrar/$1');
+    $routes->get('trabajos/(:num)/editar', 'Trabajos::editar/$1');
+    $routes->post('trabajos/(:num)/actualizar', 'Trabajos::actualizar/$1');
+    $routes->get('trabajos/(:num)/eliminar', 'Trabajos::confirmarEliminar/$1');
+    $routes->post('trabajos/(:num)/eliminar', 'Trabajos::eliminar/$1');
     $routes->get('avaluos', 'EnConstruccion::index/avaluos');
     $routes->get('cobranza', 'EnConstruccion::index/cobranza', ['filter' => 'role:1,2']);
     $routes->get('documentacion', 'EnConstruccion::index/documentacion');
