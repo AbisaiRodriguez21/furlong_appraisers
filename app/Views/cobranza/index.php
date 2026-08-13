@@ -59,12 +59,12 @@ function recargar() {
 
 <?php if ((int) session('tipo') === 2): ?>
 <p align="center">
-  <input type="button" value="Pagos" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
-  <input type="button" value="Pagos por Cliente" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
-  <input type="button" value="Pagos General" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
-  <input type="button" value="Pagos Trabajo" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
-  <input type="button" value="Adeudos" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
-  <input type="button" value="Adeudos por Cliente" onclick="location.href='<?= site_url('cobranza/reportes') ?>'" />
+  <input type="button" value="Pagos" onclick="location.href='<?= site_url('cobranza/reportes/dia') ?>'" />
+  <input type="button" value="Pagos por Cliente" onclick="location.href='<?= site_url('cobranza/reportes/cliente/0') ?>'" />
+  <input type="button" value="Pagos General" onclick="location.href='<?= site_url('cobranza/reportes/general/0') ?>'" />
+  <input type="button" value="Pagos Trabajo" onclick="location.href='<?= site_url('cobranza/reportes/trabajo') ?>'" />
+  <input type="button" value="Adeudos" onclick="location.href='<?= site_url('cobranza/reportes/general/1') ?>'" />
+  <input type="button" value="Adeudos por Cliente" onclick="location.href='<?= site_url('cobranza/reportes/cliente/1') ?>'" />
 </p>
 <?php endif; ?>
 </form>

@@ -115,15 +115,15 @@ function pregunta(folio, statusTexto) {
 
 <?php if ((int) session('tipo') === 2): ?>
 <p align="center">
-  <input type="button" value="Avaluos Entregados" onclick="location.href='<?= site_url('avaluos/reportes') ?>'" />
+  <input type="button" value="Avaluos Entregados" onclick="location.href='<?= site_url('avaluos/reportes/picker/6') ?>'" />
   &nbsp;&nbsp;
-  <input type="button" value="Avaluos Solicitados" onclick="location.href='<?= site_url('avaluos/reportes') ?>'" />
+  <input type="button" value="Avaluos Solicitados" onclick="location.href='<?= site_url('avaluos/reportes/picker/5') ?>'" />
   &nbsp;&nbsp;
-  <input type="button" value="Avaluos Vencidos" onclick="location.href='<?= site_url('avaluos/reportes') ?>'" />
+  <input type="button" value="Avaluos Vencidos" onclick="location.href='<?= site_url('avaluos/reportes/picker/2') ?>'" />
   &nbsp;&nbsp;
-  <input type="button" value="Avaluos Terminados" onclick="location.href='<?= site_url('avaluos/reportes') ?>'" />
+  <input type="button" value="Avaluos Terminados" onclick="location.href='<?= site_url('avaluos/reportes/picker/3') ?>'" />
   &nbsp;&nbsp;
-  <input type="button" value="Avaluos General" onclick="location.href='<?= site_url('avaluos/reportes') ?>'" />
+  <input type="button" value="Avaluos General" onclick="location.href='<?= site_url('avaluos/reportes/picker/4') ?>'" />
 </p>
 <?php endif; ?>
 </form>

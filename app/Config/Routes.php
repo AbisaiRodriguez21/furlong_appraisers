@@ -52,7 +52,22 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->get('avaluos', 'Avaluos::index');
     $routes->get('avaluos/filtro', 'Avaluos::filtro');
     $routes->get('avaluos/nuevo', 'Avaluos::nuevo');
-    $routes->get('avaluos/reportes', 'EnConstruccion::index/avaluos-reportes', ['filter' => 'role:2']);
+    // --- Semanas (shared by both report pickers, replaces Semanas.php) ---
+    $routes->get('semanas', 'Semanas::opciones');
+    $routes->get('semanas/generar', 'Semanas::generar');
+
+    // --- Reportes de Avalúos (replaces AvaluosReportes*.php + AvaluosReporteHoja.php + AvaluosGral*Hoja.php) ---
+    $routes->group('avaluos/reportes', ['filter' => 'role:2'], static function ($routes): void {
+        $routes->get('/', 'ReportesAvaluos::index');
+        $routes->get('picker/(:num)', 'ReportesAvaluos::picker/$1');
+        $routes->post('lista', 'ReportesAvaluos::lista');
+        $routes->get('lista/(:num)', 'ReportesAvaluos::listaDirecta/$1');
+        $routes->post('pdf', 'ReportesAvaluos::pdf');
+        $routes->get('general/(:num)', 'ReportesAvaluos::generalPorStatus/$1');
+        $routes->post('general/pdf', 'ReportesAvaluos::generalPorStatusPdf');
+        $routes->get('general-trabajo/(:num)', 'ReportesAvaluos::generalPorTrabajo/$1');
+        $routes->post('general-trabajo/pdf', 'ReportesAvaluos::generalPorTrabajoPdf');
+    });
     $routes->get('avaluos/documentos-de-trabajo/(:num)', 'Avaluos::documentosDeTrabajo/$1');
     $routes->post('avaluos/guardar', 'Avaluos::guardar');
     $routes->post('avaluos/(:any)/cancelar', 'Avaluos::cancelar/$1');
@@ -64,7 +79,22 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->group('cobranza', ['filter' => 'role:1,2'], static function ($routes): void {
         $routes->get('/', 'Cobranza::index');
         $routes->get('filtro', 'Cobranza::filtro');
-        $routes->get('reportes', 'EnConstruccion::index/cobranza-reportes', ['filter' => 'role:2']);
+        // --- Reportes de Cobranza (replaces CobranzaReporte*.php + CobranzaInfo*.php) ---
+        $routes->group('reportes', ['filter' => 'role:2'], static function ($routes): void {
+            $routes->get('/', 'ReportesCobranza::index');
+            $routes->get('dia', 'ReportesCobranza::dia');
+            $routes->get('dia/datos', 'ReportesCobranza::diaDatos');
+            $routes->post('dia/pdf', 'ReportesCobranza::diaPdf');
+            $routes->get('cliente/(:num)', 'ReportesCobranza::porCliente/$1');
+            $routes->get('cliente/datos', 'ReportesCobranza::porClienteDatos');
+            $routes->post('cliente/pdf', 'ReportesCobranza::porClientePdf');
+            $routes->get('general/(:num)', 'ReportesCobranza::general/$1');
+            $routes->post('general/lista', 'ReportesCobranza::generalLista');
+            $routes->post('general/pdf', 'ReportesCobranza::generalPdf');
+            $routes->get('trabajo', 'ReportesCobranza::porTrabajo');
+            $routes->post('trabajo/lista', 'ReportesCobranza::porTrabajoLista');
+            $routes->post('trabajo/pdf', 'ReportesCobranza::porTrabajoPdf');
+        });
         $routes->get('pago/(:num)/editar', 'Cobranza::editarPago/$1');
         $routes->post('pago/(:num)/actualizar', 'Cobranza::actualizarPago/$1');
         $routes->get('pago/(:num)/eliminar', 'Cobranza::confirmarEliminarPago/$1');
