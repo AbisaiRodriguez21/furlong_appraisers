@@ -4,6 +4,7 @@
 <meta content="text/html; charset=UTF-8" http-equiv="content-type">
 <title><?= $titulo ?? 'Furlong Appraisers' ?></title>
 <link href="<?= base_url('assets/css/Estilo.css') ?>" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?= base_url('assets/js/buscador-tabla.js') ?>"></script>
 <?= $this->renderSection('head') ?>
 </head>
 <body marginheight="0" topmargin="0">
