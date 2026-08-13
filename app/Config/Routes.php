@@ -37,7 +37,18 @@ $routes->group('', ['filter' => 'auth'], static function ($routes): void {
     $routes->post('trabajos/(:num)/actualizar', 'Trabajos::actualizar/$1');
     $routes->get('trabajos/(:num)/eliminar', 'Trabajos::confirmarEliminar/$1');
     $routes->post('trabajos/(:num)/eliminar', 'Trabajos::eliminar/$1');
-    $routes->get('avaluos', 'EnConstruccion::index/avaluos');
+    // --- Avalúos (replaces Avaluos.php + AgregarAvaluo/ConsultarAvaluo/ModificarAvaluo.php + ver.php) ---
+    $routes->get('avaluos', 'Avaluos::index');
+    $routes->get('avaluos/filtro', 'Avaluos::filtro');
+    $routes->get('avaluos/nuevo', 'Avaluos::nuevo');
+    $routes->get('avaluos/reportes', 'EnConstruccion::index/avaluos-reportes', ['filter' => 'role:2']);
+    $routes->get('avaluos/documentos-de-trabajo/(:num)', 'Avaluos::documentosDeTrabajo/$1');
+    $routes->post('avaluos/guardar', 'Avaluos::guardar');
+    $routes->post('avaluos/(:any)/cancelar', 'Avaluos::cancelar/$1');
+    $routes->get('avaluos/(:any)/imagen', 'Avaluos::imagen/$1');
+    $routes->get('avaluos/(:any)/editar', 'Avaluos::editar/$1');
+    $routes->post('avaluos/(:any)/actualizar', 'Avaluos::actualizar/$1');
+    $routes->get('avaluos/(:any)', 'Avaluos::mostrar/$1');
     $routes->get('cobranza', 'EnConstruccion::index/cobranza', ['filter' => 'role:1,2']);
     // --- Documentación (replaces Documentacion.php + AgregarDocumentacion/ModificarDocumentacion/EliminarDocumentacion.php) ---
     $routes->get('documentacion', 'Documentacion::index');
